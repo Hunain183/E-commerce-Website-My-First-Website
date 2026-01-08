@@ -1,0 +1,402 @@
+/* Basic CSS for layout and design */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0d1b2a;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(13, 27, 42, 0.9);
+    padding: 10px 20px;
+}
+
+.navbar .logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links form {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.nav-links input[type="search"] {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+}
+
+.nav-links button[type="submit"] {
+    padding: 5px 10px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links button[type="submit"]:hover {
+    background-color: #d32f2f;
+}
+
+.nav-links ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links ul li {
+    position: relative;
+}
+
+.nav-links ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links ul li a:hover {
+    background-color: #777; /* Increased contrast */
+}
+
+/* Dropdown Menu */
+.nav-links ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 0;
+    top: 100%;
+    left: 0; /* Align dropdown with the parent item */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links ul li:hover > .dropdown-content {
+    display: block;
+    opacity: 1;
+}
+
+.nav-links ul li .dropdown-content li a {
+    padding: 10px;
+    background-color: rgba(13, 27, 42, 0.9);
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links ul li .dropdown-content li a:hover {
+    background-color: #1b263b;
+}
+
+/* Submenu Styling */
+.nav-links ul li .dropdown-submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%; /* Align submenu to the right of the dropdown */
+    background-color: #333;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 0; /* Remove any padding that could cause gaps */
+}
+
+.nav-links ul li:hover > .dropdown-content li:hover > .dropdown-submenu {
+    display: block;
+}
+
+/* Ensure no gaps between dropdown and submenu */
+.nav-links ul li:hover > .dropdown-content li:hover > .dropdown-submenu {
+    margin-left: 0;
+    margin-top: 0;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5em; /* Adjust for smaller screens */
+    }
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+.product-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin: 15px 0;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e63946;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #d62828;
+}
+
+
+
+/* Cart Link Styling */
+.cart a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e63946;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cart a:hover {
+    background-color: #d62828;
+}
+
+
+/* Footer */
+.footer {
+    margin-top: 50px;
+    padding: 40px 20px;
+    background-color: rgba(13, 27, 42, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    position: relative;
+}
+
+.footer .footer-left, .footer .footer-right {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.footer .footer-left h3, .footer .footer-right h3 {
+    color: #e63946;
+    margin-bottom: 15px;
+}
+
+.footer .footer-left p, .footer .footer-right p {
+    margin-bottom: 10px;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+.footer a {
+    color: #e63946;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #d62828;
+}
+
+.footer .social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.footer .social-icons a {
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+    color: #e63946;
+}
+
+.footer .footer-right form input[type="email"] {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.footer .footer-right form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer .footer-right form button[type="submit"]:hover {
+    background-color: #d62828;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer .footer-left, .footer .footer-right {
+        text-align: center;
+    }
+}
+
+
+
+
+@media (max-width: 768px) {
+    
+    .navbar {
+        flex-direction: column;  
+        padding: 10px; 
+    }
+
+    .navbar .logo a {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;  
+        margin-top: 10px;  
+    }
+
+    .nav-links ul {
+        flex-direction: column;  
+        width: 100%;  
+    }
+
+    .nav-links ul li {
+        width: 100%;  
+    }
+
+    .hero-section {
+        padding: 30px 10px; 
+    }
+
+    .hero-section h1 {
+        font-size: 2em; 
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(150px, 1fr)); 
+    }
+
+    .footer {
+        flex-direction: column; 
+        text-align: center;  
+    }
+
+    .footer .footer-left, .footer .footer-right {
+        text-align: center;  
+        width: 100%;  
+    }
+
+    .footer .footer-right form input[type="email"] {
+        width: 90%; 
+    }
+
+    .footer .footer-right form button[type="submit"] {
+        width: 90%; 
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .navbar .logo a {
+        font-size: 22px; 
+    }
+
+    .nav-links {
+        margin-right: 0; 
+    }
+
+    .hero-section {
+        padding: 40px 20px; 
+    }
+
+    .hero-section h1 {
+        font-size: 2.5em; 
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(3, minmax(200px, 1fr)); 
+    }
+
+    .footer {
+        padding: 30px 20px;
+    }
+}

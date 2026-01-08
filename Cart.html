@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="Styling/Cart.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="./Main Page.html">&nbsp;&nbsp;Cosmoem Cart</a>
+        </div>
+        <div class="nav-links">
+            <form action="/search" method="get">
+                <input type="search" id="searchBar" placeholder="Search Here" name="query" aria-label="Search through site content">
+                <button type="submit" aria-label="Search the website">Search</button>
+            </form>
+            <ul>
+                <li><a href="./Main Page.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Categories</a>
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="./Beauty and Personal Care.html">Beauty and Personal Care</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Skincare</a></li>
+                                <li><a href="#">Hair Care</a></li>
+                                <li><a href="#">Fragrances</a></li>
+                                <li><a href="#">Personal Care Appliances</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./Electronics.html">Electronics</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Mobile Phones Accessories</a></li>
+                                <li><a href="#">Smart Watches</a></li>
+                                <li><a href="#">AirPods</a></li>
+                                <li><a href="#">Headphones</a></li>
+                                <li><a href="#">Speakers</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./Toys and Games.html">Toys and Games</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Educational Toys</a></li>
+                                <li><a href="#">Action Figures and Dolls</a></li>
+                                <li><a href="#">Board Games</a></li>
+                                <li><a href="#">Outdoor Play Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./Sports and Outdoors.html">Sports and Outdoors</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Fitness Equipment</a></li>
+                                <li><a href="#">Outdoor Gear</a></li>
+                                <li><a href="#">Cycling Gear</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./Accessories.html">Accessories</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Phone Cases</a></li>
+                                <li><a href="#">Chargers</a></li>
+                                <li><a href="#">Motorcycle Decorations</a></li>
+                                <li><a href="#">Car Decorations</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="Sign up.html">Sign up</a></li>
+            </ul>
+        </div>
+        <div class="cart">
+            
+        </div>
+    </nav>
+
+
+
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <a href="./Main Page.html" class="continue-shopping">Continue Shopping</a>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+        </div>
+
+        <div class="promo-code">
+            <label for="promo">Have a promo code?</label>
+            <input type="text" id="promo" placeholder="Enter promo code">
+            <button>Apply</button>
+        </div>
+
+        <div class="cart-summary">
+            <div>
+                <p>Subtotal:</p>
+                <p>Shipping: Free</p>
+                <p>Discount: $0.00</p>
+                <h3>Total: <span class="total-price">$299.98</span></h3>
+            </div>
+            <a href="#" class="checkout-button">Proceed to Checkout</a>
+        </div>
+    </div>
+
+
+    <script>
+        // Cart functionality for the Cart page
+
+// Function to load cart items from localStorage
+function loadCartItems() {
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Clear existing items
+
+    // Loop through each item in the cart and add to the cart container
+    cartItems.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('cart-item');
+        itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <h4>${item.name}</h4>
+                <p>$${item.price}</p>
+                <div class="quantity-controls">
+                    <button class="decrease" data-index="${index}">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="increase" data-index="${index}">+</button>
+                </div>
+            </div>
+            <button class="remove-item" data-index="${index}">Remove</button>
+        `;
+        cartItemsContainer.appendChild(itemElement);
+    });
+
+    // Update the total price after loading items
+    updateTotal();
+}
+
+// Function to update total price
+function updateTotal() {
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalPriceElement = document.querySelector('.total-price');
+    let total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    totalPriceElement.textContent = `$${total.toFixed(2)}`;
+}
+
+// Function to apply promo code
+function applyPromoCode() {
+    const promoCode = document.getElementById('promo').value;
+    if (promoCode === "DISCOUNT20") {
+        let totalPriceElement = document.querySelector('.total-price');
+        let currentTotal = parseFloat(totalPriceElement.textContent.replace('$', ''));
+        let discount = currentTotal * 0.2; // 20% discount
+        totalPriceElement.textContent = `$${(currentTotal - discount).toFixed(2)}`;
+        document.querySelector('.cart-summary p:nth-child(3)').textContent = `Discount: -$${discount.toFixed(2)}`;
+    } else {
+        alert("Invalid promo code");
+    }
+}
+
+// Event listeners for quantity controls and remove buttons
+document.getElementById('cart-items').addEventListener('click', function (e) {
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (e.target.classList.contains('increase')) {
+        const index = e.target.getAttribute('data-index');
+        cartItems[index].quantity += 1;
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        loadCartItems();
+    } else if (e.target.classList.contains('decrease')) {
+        const index = e.target.getAttribute('data-index');
+        if (cartItems[index].quantity > 1) {
+            cartItems[index].quantity -= 1;
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCartItems();
+        }
+    } else if (e.target.classList.contains('remove-item')) {
+        const index = e.target.getAttribute('data-index');
+        cartItems.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        loadCartItems();
+    }
+});
+
+// Event listener for the promo code button
+document.querySelector('.promo-code button').addEventListener('click', applyPromoCode);
+
+// Initial loading of cart items
+document.addEventListener('DOMContentLoaded', loadCartItems);
+
+    </script>
+    
+</body>
+</html>
