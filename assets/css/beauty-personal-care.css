@@ -1,10 +1,15 @@
 /* Basic CSS for layout and design */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #0d1b2a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
     background-attachment: fixed;
     color: #fff;
+    min-height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 
@@ -15,6 +20,8 @@ body {
     align-items: center;
     background-color: rgba(13, 27, 42, 0.9);
     padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .navbar .logo a {
@@ -27,29 +34,31 @@ body {
 .nav-links {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .nav-links form {
     display: flex;
     align-items: center;
     margin-right: 20px;
+    gap: 6px;
 }
 
 .nav-links input[type="search"] {
-    padding: 5px;
+    padding: 8px 10px;
     font-size: 16px;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
     outline: none;
 }
 
 .nav-links button[type="submit"] {
-    padding: 5px 10px;
+    padding: 8px 12px;
     background-color: #e63946;
     color: white;
     border: none;
-    border-radius: 3px;
-    margin-left: 5px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -62,6 +71,7 @@ body {
     list-style-type: none;
     display: flex;
     align-items: center;
+    gap: 6px;
 }
 
 .nav-links ul li {
@@ -77,7 +87,7 @@ body {
 }
 
 .nav-links ul li a:hover {
-    background-color: #777;
+    background-color: #777; /* Increased contrast */
 }
 
 /* Dropdown Menu */
@@ -90,7 +100,7 @@ body {
     z-index: 1;
     padding: 0;
     top: 100%;
-    left: 0; /* Ensure the dropdown aligns perfectly with the parent item */
+    left: 0; /* Align dropdown with the parent item */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -145,11 +155,22 @@ body {
     margin-bottom: 20px;
 }
 
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5em; /* Adjust for smaller screens */
+    }
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
 /* Product Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
     padding: 20px;
   }
 
@@ -167,9 +188,10 @@ body {
 }
 
 .product-card img {
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 200px;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .product-card h3 {
@@ -191,6 +213,8 @@ body {
     background-color: #d62828;
 }
 
+
+
 /* Cart Link Styling */
 .cart a {
     display: inline-block;
@@ -209,7 +233,7 @@ body {
 
 /* Footer */
 .footer {
-    margin-top: 50px;
+    margin-top: 40px;
     padding: 40px 20px;
     background-color: rgba(13, 27, 42, 0.9);
     display: flex;
@@ -218,6 +242,8 @@ body {
     color: white;
     font-size: 16px;
     position: relative;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .footer .footer-left, .footer .footer-right {
@@ -290,12 +316,14 @@ body {
     .footer {
         flex-direction: column;
         text-align: center;
+        align-items: flex-start;
     }
     
     .footer .footer-left, .footer .footer-right {
-        text-align: center;
+        text-align: left;
     }
 }
+
 
 
 
@@ -304,6 +332,7 @@ body {
     .navbar {
         flex-direction: column;  
         padding: 10px; 
+        align-items: flex-start;
     }
 
     .navbar .logo a {
@@ -313,15 +342,21 @@ body {
     .nav-links {
         flex-direction: column;  
         margin-top: 10px;  
+        width: 100%;
     }
 
     .nav-links ul {
         flex-direction: column;  
         width: 100%;  
+        gap: 8px;
     }
 
     .nav-links ul li {
         width: 100%;  
+    }
+
+    .nav-links form {
+        width: 100%;
     }
 
     .hero-section {
@@ -333,7 +368,7 @@ body {
     }
 
     .product-grid {
-        grid-template-columns: repeat(2, minmax(150px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
     }
 
     .footer {

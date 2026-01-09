@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced E-commerce Website</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="./index.html">&nbsp;&nbsp;Cosmoem Cart</a>
+        </div>
+        <div class="nav-links">
+            <form action="/search" method="get">
+                <input type="search" id="searchBar" placeholder="Search Here" name="query" aria-label="Search through site content">
+                <button type="submit" aria-label="Search the website">Search</button>
+            </form>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Categories</a>
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="pages/beauty-personal-care.html">Beauty and Personal Care</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Skincare</a></li>
+                                <li><a href="#">Hair Care</a></li>
+                                <li><a href="#">Fragrances</a></li>
+                                <li><a href="#">Personal Care Appliances</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="pages/electronics.html">Electronics</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Mobile Phones Accessories</a></li>
+                                <li><a href="#">Smart Watches</a></li>
+                                <li><a href="#">AirPods</a></li>
+                                <li><a href="#">Headphones</a></li>
+                                <li><a href="#">Speakers</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="pages/toys-games.html">Toys and Games</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Educational Toys</a></li>
+                                <li><a href="#">Action Figures and Dolls</a></li>
+                                <li><a href="#">Board Games</a></li>
+                                <li><a href="#">Outdoor Play Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="pages/sports-outdoors.html">Sports and Outdoors</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Fitness Equipment</a></li>
+                                <li><a href="#">Outdoor Gear</a></li>
+                                <li><a href="#">Cycling Gear</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="pages/accessories.html">Accessories</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                                <li><a href="#">Phone Cases</a></li>
+                                <li><a href="#">Chargers</a></li>
+                                <li><a href="#">Motorcycle Decorations</a></li>
+                                <li><a href="#">Car Decorations</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="pages/sign-up.html">Sign up</a></li>
+            </ul>
+        </div>
+        <div class="cart">
+            <a href="pages/cart.html">Cart</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <h1>Welcome to Our Store</h1>
+        <p>Experience the future of online shopping</p>
+    </header>
+
+    <div class="content-grid">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Categories</h2>
+            <ul class="category-list">
+                <li>
+                    <a href="pages/beauty-personal-care.html">Beauty and Personal Care</a>
+                    <ul>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Hair Care</a></li>
+                        <li><a href="#">Fragrances</a></li>
+                        <li><a href="#">Personal Care Appliances</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="pages/electronics.html">Electronics</a>
+                    <ul>
+                        <li><a href="#">Mobile Phones Accessories</a></li>
+                        <li><a href="#">Smart Watches</a></li>
+                        <li><a href="#">AirPods</a></li>
+                        <li><a href="#">Headphones</a></li>
+                        <li><a href="#">Speakers</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="pages/toys-games.html">Toys and Games</a>
+                    <ul>
+                        <li><a href="#">Educational Toys</a></li>
+                        <li><a href="#">Action Figures and Dolls</a></li>
+                        <li><a href="#">Board Games</a></li>
+                        <li><a href="#">Outdoor Play Equipment</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="pages/sports-outdoors.html">Sports and Outdoors</a>
+                    <ul>
+                        <li><a href="#">Fitness Equipment</a></li>
+                        <li><a href="#">Outdoor Gear</a></li>
+                        <li><a href="#">Cycling Gear</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="pages/accessories.html">Accessories</a>
+                    <ul>
+                        <li><a href="#">Phone Cases</a></li>
+                        <li><a href="#">Chargers</a></li>
+                        <li><a href="#">Motorcycle Decorations</a></li>
+                        <li><a href="#">Car Decorations</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="catalog">
+            <div class="toolbar">
+                <label for="sortProducts">Sort products</label>
+                <select id="sortProducts">
+                    <option value="priceAsc">Price: Low to High</option>
+                    <option value="priceDesc">Price: High to Low</option>
+                    <option value="nameAsc">Name: A-Z</option>
+                    <option value="nameDesc">Name: Z-A</option>
+                </select>
+            </div>
+
+            <!-- Product Grid -->
+            <main>
+                <section class="product-grid" id="productGrid">
+                    <script>
+                        const products = [
+                            {id: 1, name: 'Dove Shampoo', price: '49.99', image: 'assets/images/hair-care/dove.jpeg'},
+                            {id: 2, name: 'Serum', price: '12', image: 'assets/images/hair-care/serum.jpg'},
+                            {id: 3, name: 'Hair Oil', price: '99', image: 'assets/images/hair-care/serum-2.jpg'},
+                            {id: 4, name: 'Airpods', price: '90.99', image: 'assets/images/electronics/airpods.jpeg'},
+                            {id: 5, name: 'Headphones', price: '39.99', image: 'assets/images/electronics/headphones.jpeg'},
+                            {id: 6, name: 'JBL Speaker', price: '199.99', image: 'assets/images/electronics/jbl.jpeg'},
+                            {id: 7, name: 'Mouse', price: '19.99', image: 'assets/images/electronics/mouse.jpeg'},
+                            {id: 8, name: 'Uriage', price: '19.99', image: 'assets/images/skin-care/uriage.jpg'}
+                        ];
+
+                        const productGrid = document.getElementById('productGrid');
+                        const renderProducts = () => {
+                            productGrid.innerHTML = '';
+                            products.forEach(product => {
+                                const productCard = `
+                                    <div class="product-card" data-name="${product.name.toLowerCase()}" data-id="${product.id}">
+                                        <img src="${product.image}" alt="Image of ${product.name}">
+                                        <h3>${product.name}</h3>
+                                        <p>$${product.price}</p>
+                                        <a href="#" class="add-to-cart" 
+                                           data-name="${product.name}" data-price="${product.price}" 
+                                           data-image="${product.image}">Add to Cart</a>
+                                    </div>
+                                `;
+                                productGrid.innerHTML += productCard;
+                            });
+                        };
+
+                        renderProducts();
+                        
+                        // Sort function
+                        document.getElementById('sortProducts').addEventListener('change', function() {
+                            const sortType = this.value;
+
+                            products.sort((a, b) => {
+                                if (sortType === 'priceAsc') return a.price - b.price;
+                                if (sortType === 'priceDesc') return b.price - a.price;
+                                if (sortType === 'nameAsc') return a.name.localeCompare(b.name);
+                                if (sortType === 'nameDesc') return b.name.localeCompare(a.name);
+                                return 0;
+                            });
+                            renderProducts();
+                        });
+                    </script>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <h3>About Us</h3>
+            <p>Cosmoem Cart: Your ultimate destination for a diverse range of products, from electronics to everyday essentials.</p>
+            <p>Discover a world of possibilities with our vast selection of top-quality products, all in one convenient marketplace.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
+                <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <h3>Stay Updated</h3>
+            <form action="#" method="post">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <a href="#chatbot" class="chatbot-button">Chat with us!</a>
+        </div>
+    </footer>
+    <script src="assets/js/all.js"></script>
+</body>
+</html>

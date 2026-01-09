@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Product Management</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="../index.html">Cosmoem Cart - Admin</a>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../index.html">Back to Store</a></li>
+                <li><a href="#products">Manage Products</a></li>
+                <li><a href="#discounts">Manage Discounts</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <h1>Product Management</h1>
+
+        <!-- Add/Edit Product Form -->
+        <section class="product-form-section">
+            <h2 id="form-title">Add New Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                
+                <div class="form-group">
+                    <label for="productName">Product Name *</label>
+                    <input type="text" id="productName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Price ($) *</label>
+                    <input type="number" id="productPrice" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productCategory">Category *</label>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="beauty">Beauty & Personal Care</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="toys">Toys & Games</option>
+                        <option value="sports">Sports & Outdoors</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImage">Image URL *</label>
+                    <input type="text" id="productImage" placeholder="assets/images/category/image.jpg" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDiscount">Discount (%) - Optional</label>
+                    <input type="number" id="productDiscount" min="0" max="100" value="0">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Product</button>
+                    <button type="button" class="btn-secondary" onclick="resetForm()">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Product List -->
+        <section class="product-list-section">
+            <h2>All Products</h2>
+            <div class="filter-bar">
+                <select id="filterCategory">
+                    <option value="all">All Categories</option>
+                    <option value="beauty">Beauty & Personal Care</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="toys">Toys & Games</option>
+                    <option value="sports">Sports & Outdoors</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+                <input type="text" id="searchProduct" placeholder="Search products...">
+            </div>
+            
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Final Price</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Products will be loaded here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Bulk Discount Section -->
+        <section class="bulk-discount-section">
+            <h2>Apply Bulk Discount</h2>
+            <div class="bulk-form">
+                <div class="form-group">
+                    <label for="bulkCategory">Category</label>
+                    <select id="bulkCategory">
+                        <option value="all">All Products</option>
+                        <option value="beauty">Beauty & Personal Care</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="toys">Toys & Games</option>
+                        <option value="sports">Sports & Outdoors</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bulkDiscount">Discount (%)</label>
+                    <input type="number" id="bulkDiscount" min="0" max="100" value="0">
+                </div>
+                <button onclick="applyBulkDiscount()" class="btn-primary">Apply Discount</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,11 +1,14 @@
 // Function to add product to cart
 function addToCart(event) {
+    const productButton = event.target.closest('.add-to-cart');
+    if (!productButton) return;
+
     event.preventDefault(); // Prevent the default anchor behavior
 
     // Get product details from the data attributes
-    const productName = event.target.dataset.name;
-    const productPrice = parseFloat(event.target.dataset.price);
-    const productImage = event.target.dataset.image;
+    const productName = productButton.dataset.name;
+    const productPrice = parseFloat(productButton.dataset.price);
+    const productImage = productButton.dataset.image;
 
     // Check if price is a valid number
     if (isNaN(productPrice)) {
@@ -31,9 +34,11 @@ function addToCart(event) {
     localStorage.setItem('cart', JSON.stringify(cart)); // Save cart
 }
 
-// Add event listeners to all "Add to Cart" buttons
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', addToCart);
+// Delegate add-to-cart handling so dynamically re-rendered cards still work
+document.addEventListener('click', event => {
+    if (event.target.closest('.add-to-cart')) {
+        addToCart(event);
+    }
 });
 
 // Search function
@@ -46,21 +51,24 @@ document.getElementById('searchBar').addEventListener('input', function() {
 });
 
 
-// Cart summary on hover
+// Cart summary on hover (guard against pages without a cart icon/summary)
 const cartIcon = document.querySelector('.cart a');
-cartIcon.addEventListener('mouseenter', function() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartSummary = document.getElementById('cartSummary');
+const cartSummary = document.getElementById('cartSummary');
 
-    let cartHTML = '<h3>Cart Summary</h3>';
-    cart.forEach(item => {
-        cartHTML += `<p>${item.name}: $${item.price} x ${item.quantity}</p>`;
+if (cartIcon && cartSummary) {
+    cartIcon.addEventListener('mouseenter', function() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        let cartHTML = '<h3>Cart Summary</h3>';
+        cart.forEach(item => {
+            cartHTML += `<p>${item.name}: $${item.price} x ${item.quantity}</p>`;
+        });
+
+        cartSummary.innerHTML = cartHTML;
+        cartSummary.style.display = 'block';
     });
 
-    cartSummary.innerHTML = cartHTML;
-    cartSummary.style.display = 'block';
-});
-
-cartIcon.addEventListener('mouseleave', function() {
-    document.getElementById('cartSummary').style.display = 'none';
-});
+    cartIcon.addEventListener('mouseleave', function() {
+        cartSummary.style.display = 'none';
+    });
+}

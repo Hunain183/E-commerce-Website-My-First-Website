@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="Styling/Cart.css">
+    <link rel="stylesheet" href="../assets/css/cart.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="./Main Page.html">&nbsp;&nbsp;Cosmoem Cart</a>
+            <a href="../index.html">&nbsp;&nbsp;Cosmoem Cart</a>
         </div>
         <div class="nav-links">
             <form action="/search" method="get">
@@ -19,12 +20,12 @@
                 <button type="submit" aria-label="Search the website">Search</button>
             </form>
             <ul>
-                <li><a href="./Main Page.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Categories</a>
                     <ul class="dropdown-content">
                         <li>
-                            <a href="./Beauty and Personal Care.html">Beauty and Personal Care</a>
+                            <a href="./beauty-personal-care.html">Beauty and Personal Care</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#">Skincare</a></li>
                                 <li><a href="#">Hair Care</a></li>
@@ -33,7 +34,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Electronics.html">Electronics</a>
+                            <a href="./electronics.html">Electronics</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#">Mobile Phones Accessories</a></li>
                                 <li><a href="#">Smart Watches</a></li>
@@ -43,7 +44,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Toys and Games.html">Toys and Games</a>
+                            <a href="./toys-games.html">Toys and Games</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#">Educational Toys</a></li>
                                 <li><a href="#">Action Figures and Dolls</a></li>
@@ -52,7 +53,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Sports and Outdoors.html">Sports and Outdoors</a>
+                            <a href="./sports-outdoors.html">Sports and Outdoors</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#">Fitness Equipment</a></li>
                                 <li><a href="#">Outdoor Gear</a></li>
@@ -60,7 +61,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Accessories.html">Accessories</a>
+                            <a href="./accessories.html">Accessories</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#">Phone Cases</a></li>
                                 <li><a href="#">Chargers</a></li>
@@ -72,7 +73,7 @@
                 </li>
                 <li><a href="#">Deals</a></li>
                 <li><a href="#">Support</a></li>
-                <li><a href="Sign up.html">Sign up</a></li>
+                <li><a href="./sign-up.html">Sign up</a></li>
             </ul>
         </div>
         <div class="cart">
@@ -86,7 +87,7 @@
     <div class="cart-container">
         <div class="cart-header">
             <h2>Your Cart</h2>
-            <a href="./Main Page.html" class="continue-shopping">Continue Shopping</a>
+            <a href="../index.html" class="continue-shopping">Continue Shopping</a>
         </div>
 
         <div class="cart-items" id="cart-items">
@@ -119,20 +120,35 @@ function loadCartItems() {
     const cartItemsContainer = document.getElementById('cart-items');
     cartItemsContainer.innerHTML = ''; // Clear existing items
 
+    if (cartItems.length === 0) {
+        cartItemsContainer.innerHTML = '<p style="text-align: center; padding: 40px; font-size: 18px;">Your cart is empty. Start shopping!</p>';
+        document.querySelector('.total-price').textContent = '$0.00';
+        return;
+    }
+
     // Loop through each item in the cart and add to the cart container
     cartItems.forEach((item, index) => {
+        // Fix image path: if path starts with 'assets/', add '../'
+        let imagePath = item.image;
+        if (imagePath.startsWith('assets/')) {
+            imagePath = '../' + imagePath;
+        } else if (!imagePath.startsWith('../') && !imagePath.startsWith('http')) {
+            imagePath = '../' + imagePath;
+        }
+
         const itemElement = document.createElement('div');
         itemElement.classList.add('cart-item');
         itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="item-details">
-                <h4>${item.name}</h4>
-                <p>$${item.price}</p>
-                <div class="quantity-controls">
-                    <button class="decrease" data-index="${index}">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="increase" data-index="${index}">+</button>
+            <img src="${imagePath}" alt="${item.name}" onerror="this.src='../assets/images/placeholder.png'">
+            <div class="cart-item-info">
+                <h3>${item.name}</h3>
+                <p>Price: $${parseFloat(item.price).toFixed(2)}</p>
+                <div class="cart-item-quantity">
+                    <button class="decrease quantity-adjust" data-index="${index}">-</button>
+                    <span style="padding: 0 12px; font-weight: bold;">${item.quantity}</span>
+                    <button class="increase quantity-adjust" data-index="${index}">+</button>
                 </div>
+                <p style="font-weight: bold; color: #fff; margin-top: 8px;">Subtotal: $${(parseFloat(item.price) * item.quantity).toFixed(2)}</p>
             </div>
             <button class="remove-item" data-index="${index}">Remove</button>
         `;
@@ -147,7 +163,13 @@ function loadCartItems() {
 function updateTotal() {
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const totalPriceElement = document.querySelector('.total-price');
-    let total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const subtotalElement = document.querySelector('.cart-summary p:nth-child(1)');
+    
+    let total = cartItems.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
+    
+    if (subtotalElement) {
+        subtotalElement.textContent = `Subtotal: $${total.toFixed(2)}`;
+    }
     totalPriceElement.textContent = `$${total.toFixed(2)}`;
 }
 
@@ -196,6 +218,6 @@ document.querySelector('.promo-code button').addEventListener('click', applyProm
 document.addEventListener('DOMContentLoaded', loadCartItems);
 
     </script>
-    
+    <script src="../assets/js/all.js"></script>
 </body>
 </html>

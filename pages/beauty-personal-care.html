@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toys and Games</title>
-    <link rel="stylesheet" href="Styling/Toys and Games.css">
+    <title>Beauty and Personal Care</title>
+    <link rel="stylesheet" href="../assets/css/beauty-personal-care.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-    
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="./Main Page.html">Cosmoem Cart</a>
+            <a href="../index.html">Cosmoem Cart</a>
         </div>
         <div class="nav-links">
             <form action="/search" method="get">
-                <input type="search" id="searchBar" placeholder="Search Here" name="query" aria-label="Search through site content">
+                <input type="search" placeholder="Search Here" id="searchBar" name="query" aria-label="Search through site content">
                 <button type="submit" aria-label="Search the website">Search</button>
             </form>
             <ul>
-                <li><a href="./Main%20Page.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Categories</a>
                     <ul class="dropdown-content">
                         <li>
-                            <a href="./Beauty and Personal Care.html">Beauty and Personal Care</a>
+                            <a href="./beauty-personal-care.html">Beauty and Personal Care</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Skincare</a></li>
                                 <li><a href="#" class="dropdown-item">Hair Care</a></li>
@@ -33,17 +34,17 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Electronics.html">Electronics</a>
+                            <a href="./electronics.html">Electronics</a>
                             <ul class="dropdown-menu dropdown-submenu">
-                                <li><a href="#" class="dropdown-item">Mobile Phones Accessories</a></li>
+                                <li><a href="#" class="dropdown-item">Mobile Phone Accessories</a></li>
                                 <li><a href="#" class="dropdown-item">Smart Watches</a></li>
-                                <li><a href="#" class="dropdown-item">Airpods</a></li>
+                                <li><a href="#" class="dropdown-item">AirPods</a></li>
                                 <li><a href="#" class="dropdown-item">Headphones</a></li>
                                 <li><a href="#" class="dropdown-item">Speakers</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="./Toys and Games.html">Toys and Games</a>
+                            <a href="./toys-games.html">Toys and Games</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Educational Toys</a></li>
                                 <li><a href="#" class="dropdown-item">Action Figures and Dolls</a></li>
@@ -52,7 +53,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Sports and Outdoors.html">Sports and Outdoors</a>
+                            <a href="./sports-outdoors.html">Sports and Outdoors</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Fitness Equipment</a></li>
                                 <li><a href="#" class="dropdown-item">Outdoor Gear</a></li>
@@ -60,7 +61,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Accessories.html">Accessories</a>
+                            <a href="./accessories.html">Accessories</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Phone Cases</a></li>
                                 <li><a href="#" class="dropdown-item">Chargers</a></li>
@@ -72,45 +73,47 @@
                 </li>
                 <li><a href="#">Deals</a></li>
                 <li><a href="#">Support</a></li>
-                <li><a href="./Sign up.html">Sign up</a></li>
+                <li><a href="./sign-up.html">Sign up</a></li>
             </ul>
         </div>
         <div class="cart">
-            <a href="./Cart.html">Cart</a>
+            <a href="./cart.html">Cart</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero-section">
-        <h1>Toys and Games</h1>
+        <h1>Beauty and Personal Care</h1>
     </header>
 
     <!-- Product Grid -->
     <main>
         <section class="product-grid" id="productList">
             <script>
-                const products = [
-                    { id: 1, name: 'Educational Toy', price: '29.99', image: 'Images/Toys/Educational_Toy.jpeg' },
-                    { id: 2, name: 'Action Figure', price: '19.99', image: 'Images/Toys/Action_Figure.jpeg' },
-                    { id: 3, name: 'Board Game', price: '39.99', image: 'Images/Toys/Board_Game.jpeg' },
-                    { id: 4, name: 'Outdoor Play Equipment', price: '89.99', image: 'Images/Toys/Outdoor.jpeg' },
-                ];
-
-                const productGrid = document.getElementById('productList');
-                products.forEach(product => {
-                    const productCard = `
-                        <div class="product-card" data-name="${product.name.toLowerCase()}" data-id="${product.id}">
-                            <img src="${product.image}" alt="Image of ${product.name}">
-                            <h3>${product.name}</h3>
-                            <p>$${product.price}</p>
-                            <a href="#" class="add-to-cart" 
-                               data-name="${product.name}" data-price="${product.price}" 
-                               data-image="${product.image}">Add to Cart</a>
-                        </div>
-                    `;
-                    productGrid.insertAdjacentHTML('beforeend', productCard);
-                });
-            </script>
+            // Product data
+            const products = [
+                {id: 1, name: 'Dove Shampoo', price: '49.99', image: '../assets/images/hair-care/dove.jpeg'},
+                {id: 2, name: 'Serum', price: '12', image: '../assets/images/hair-care/serum.jpg'},
+                {id: 3, name: 'Serum 2', price: '99', image: '../assets/images/hair-care/serum-2.jpg'},
+                {id: 4, name: 'Dove Shampoo', price: '49.99', image: '../assets/images/hair-care/dove.jpeg'},
+            ];
+    
+            // Populate product grid
+            const productGrid = document.getElementById('productList');
+            products.forEach(product => {
+                const productCard = `
+                    <div class="product-card" data-name="${product.name.toLowerCase()}" data-id="${product.id}">
+                        <img src="${product.image}" alt="Image of ${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>$${product.price}</p>
+                        <a href="#" class="add-to-cart" 
+                           data-name="${product.name}" data-price="${product.price}" 
+                           data-image="${product.image}">Add to Cart</a>
+                    </div>
+                `;
+                productGrid.innerHTML += productCard;
+            }); 
+        </script>     
         </section>
     </main>
 
@@ -124,7 +127,7 @@
                 <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a>
                 <a href="#"><i class="fab fa-twitter"></i>Twitter</a>
                 <a href="#"><i class="fab fa-instagram"></i>Instagram</a>
-                <a href="#"><i class="fab fa-linkedin-in"></i>Linkedin</a>
+                <a href="#"><i class="fab fa-linkedin-in"></i>LinkedIn</a>
             </div>
         </div>
         <div class="footer-right">
@@ -136,6 +139,6 @@
         </div>
     </footer>
 
-    <script src="Javascript/All.js"></script>
+    <script src="../assets/js/all.js"></script>
 </body>
 </html>

@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electronics</title>
-    <link rel="stylesheet" href="Styling/Electronics.css">
+    <link rel="stylesheet" href="../assets/css/electronics.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
     
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="./Main Page.html">Cosmoem Cart</a>
+            <a href="../index.html">Cosmoem Cart</a>
         </div>
         <div class="nav-links">
             <form action="/search" method="get">
@@ -19,12 +20,12 @@
                 <button type="submit" aria-label="Search the website">Search</button>
             </form>
             <ul>
-                <li><a href="./Main%20Page.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Categories</a>
                     <ul class="dropdown-content">
                         <li>
-                            <a href="./Beauty and Personal Care.html">Beauty and Personal Care</a>
+                            <a href="./beauty-personal-care.html">Beauty and Personal Care</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Skincare</a></li>
                                 <li><a href="#" class="dropdown-item">Hair Care</a></li>
@@ -33,7 +34,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Electronics.html">Electronics</a>
+                            <a href="./electronics.html">Electronics</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Mobile Phones Accessories</a></li>
                                 <li><a href="#" class="dropdown-item">Smart Watches</a></li>
@@ -43,7 +44,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Toys and Games.html">Toys and Games</a>
+                            <a href="./toys-games.html">Toys and Games</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Educational Toys</a></li>
                                 <li><a href="#" class="dropdown-item">Action Figures and Dolls</a></li>
@@ -52,7 +53,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Sports and Outdoors.html">Sports and Outdoors</a>
+                            <a href="./sports-outdoors.html">Sports and Outdoors</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Fitness Equipments</a></li>
                                 <li><a href="#" class="dropdown-item">Outdoor Gear</a></li>
@@ -60,7 +61,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="./Accessories.html">Accessories</a>
+                            <a href="./accessories.html">Accessories</a>
                             <ul class="dropdown-menu dropdown-submenu">
                                 <li><a href="#" class="dropdown-item">Phone Cases</a></li>
                                 <li><a href="#" class="dropdown-item">Chargers</a></li>
@@ -72,11 +73,11 @@
                 </li>
                 <li><a href="#">Deals</a></li>
                 <li><a href="#">Support</a></li>
-                <li><a href="./Sign up.html">Sign up</a></li>
+                <li><a href="./sign-up.html">Sign up</a></li>
             </ul>
         </div>
         <div class="cart">
-            <a href="./Cart.html">Cart</a>
+            <a href="./cart.html">Cart</a>
         </div>
     </nav>
     
@@ -90,10 +91,10 @@
         <section class="product-grid" id="productList">
             <script>
                 const products = [
-                {id: 1, name: 'Airpods', price: '90.99', image: 'Images/Electronics/airpods.jpeg'},
-                {id: 2, name: 'Headphones', price: '39.99', image: 'Images/Electronics/headphones.jpeg'},
-                {id: 3, name: 'JBL Speaker', price: '199.99', image: 'Images/Electronics/jbl.jpeg'},
-                {id: 4, name: 'Mouse', price: '19.99', image: 'Images/Electronics/mouse.jpeg'},
+                {id: 1, name: 'Airpods', price: '90.99', image: '../assets/images/electronics/airpods.jpeg'},
+                {id: 2, name: 'Headphones', price: '39.99', image: '../assets/images/electronics/headphones.jpeg'},
+                {id: 3, name: 'JBL Speaker', price: '199.99', image: '../assets/images/electronics/jbl.jpeg'},
+                {id: 4, name: 'Mouse', price: '19.99', image: '../assets/images/electronics/mouse.jpeg'},
         ];
 
         const productGrid = document.getElementById('productList');
@@ -136,6 +137,6 @@
         </div>
     </footer>
 
-    <script src="Javascript/All.js"></script>
+    <script src="../assets/js/all.js"></script>
 </body>
 </html>
